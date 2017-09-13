@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using MunicipalLibrary.Models;
 
-namespace Vidly.ViewModels
+namespace MunicipalLibrary.ViewModels
 {
     public class RandomBookViewModel
     {
