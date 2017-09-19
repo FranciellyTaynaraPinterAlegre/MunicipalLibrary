@@ -9,8 +9,16 @@ namespace MunicipalLibrary
 {
     public class RouteConfig
     {
+
         public static void RegisterRoutes(RouteCollection routes)
         {
+
+            routes.MapRoute(
+                name: "ClientByMembershipDate",
+                url: "client/search/{year}/{month}",
+                defaults: new {Controller = "Client",action = "Search" }
+
+        );
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(

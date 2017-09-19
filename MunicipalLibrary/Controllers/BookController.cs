@@ -7,7 +7,7 @@ using MunicipalLibrary.Models;
 using MunicipalLibrary.Controllers;
 using MunicipalLibrary.ViewModels;
 
-namespace Vidly.Controllers
+namespace MunicipalLibrary.Controllers
 {
     public class BooksController : Controller
     {
@@ -20,15 +20,15 @@ namespace Vidly.Controllers
             };
         }
 
-        // GET: Movies/Random
+        // GET: Books/Random
         public ActionResult Random()
         {
-            var movie = new Book()
+            var books = new Book()
             {
                 Title = "A culpa é das estrelas"
             };
 
-            var customers = new List<Client>
+            var clients = new List<Client>
             {
                 new Client { Id = 1 },
                 new Client { Id = 2 }
@@ -37,7 +37,7 @@ namespace Vidly.Controllers
             var viewModel = new RandomBookViewModel
             {
                 Book = books,
-                Client = clients
+                Clients = clients
             };
 
             return View(viewModel);
@@ -45,19 +45,19 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            var movies = GetBooks();
+            var books = GetBooks();
 
-            return View(movies);
+            return View(books);
         }
 
         public ActionResult Details(int id)
         {
-            var movie = GetBooks().SingleOrDefault(m => m.Id == id);
+            var books = GetBooks().SingleOrDefault(m => m.Id == id);
 
-            if (movie == null)
+            if (books == null)
                 return HttpNotFound();
 
-            return View(movie);
+            return View(books);
         }
 
     }
