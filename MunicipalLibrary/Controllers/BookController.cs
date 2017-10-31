@@ -11,6 +11,7 @@ namespace MunicipalLibrary.Controllers
 {
     public class BooksController : Controller
     {
+
         public IEnumerable<Book> GetBooks()
         {
             return new List<Book>
@@ -19,15 +20,26 @@ namespace MunicipalLibrary.Controllers
                 new Book { Title = "The last song", Id = 2}
             };
         }
+        public ApplicationDbContext _context;
+
+        public BooksController()
+        {
+            _context = new ApplicationDbContext();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
         // GET: Books/Random
-        public ActionResult Random()
+        public ActionResult Index()
         {
             var books = new Book()
             {
                 Title = "A culpa é das estrelas"
             };
 
+            
             var clients = new List<Client>
             {
                 new Client { Id = 1 },
@@ -36,16 +48,16 @@ namespace MunicipalLibrary.Controllers
 
             var viewModel = new RandomBookViewModel
             {
-                Book = books,
+                Books = books,
                 Clients = clients
             };
 
-            return View(viewModel);
+            return View(books);
         }
 
-        public ActionResult Index()
+        public ActionResult Random()
         {
-            var books = GetBooks();
+            var books = _context.Books.ToList();
 
             return View(books);
         }

@@ -8,7 +8,7 @@ namespace MunicipalLibrary.ViewModels
 {
     public class RandomBookViewModel
     {
-        public Book Book { get; set; }
+        public Book Books { get; set; }
         public List<Client> Clients { get; set; }
     }
 }
