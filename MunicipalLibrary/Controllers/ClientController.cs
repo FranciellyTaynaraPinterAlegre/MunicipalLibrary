@@ -7,9 +7,23 @@ using System.Web.Mvc;
 
 namespace MunicipalLibrary.Controllers {
     public class ClientController : Controller{
+
+        private ApplicationDbContext _context;
+
+        public ClientController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         public ActionResult Index() {
-            var client = new Client() { Name = "Fernado" };
-            return View(client);
+            var clients = _context.Clients.ToList();
+            
+            return View(clients);
         }
     }
 }

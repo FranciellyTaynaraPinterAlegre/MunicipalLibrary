@@ -1,15 +1,28 @@
 ﻿using MunicipalLibrary.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace MunicipalLibrary.Controllers {
     public class AuthorController : Controller {
         // GET: Author
-        public ActionResult Index() {
-            return View(new List<Author>() {
-                new Author() {Name = "Francielly", Sex = Sex.Feminine },
-                new Author() {Name = "Fernando", Sex = Sex.Masculine }
-            });
+        private ApplicationDbContext _context;
+
+        public AuthorController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+        public ActionResult Index()
+        {
+            var authors = _context.Authors.ToList();
+
+            return View(authors);
         }
     }
 }

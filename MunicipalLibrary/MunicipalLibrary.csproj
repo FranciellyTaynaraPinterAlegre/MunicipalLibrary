@@ -210,9 +210,9 @@
     <Compile Include="Migrations\201709192300492_migrationInicial.Designer.cs">
       <DependentUpon>201709192300492_migrationInicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709200006199_PopulableBooks.cs" />
-    <Compile Include="Migrations\201709200006199_PopulableBooks.Designer.cs">
-      <DependentUpon>201709200006199_PopulableBooks.cs</DependentUpon>
+    <Compile Include="Migrations\201711282146484_adicionarRent.cs" />
+    <Compile Include="Migrations\201711282146484_adicionarRent.Designer.cs">
+      <DependentUpon>201711282146484_adicionarRent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -245,6 +245,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -293,13 +295,15 @@
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Rent\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709192300492_migrationInicial.resx">
       <DependentUpon>201709192300492_migrationInicial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709200006199_PopulableBooks.resx">
-      <DependentUpon>201709200006199_PopulableBooks.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711282146484_adicionarRent.resx">
+      <DependentUpon>201711282146484_adicionarRent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MunicipalLibrary.Models.Author>
+﻿@model IEnumerable<MunicipalLibrary.Models.Rent>
 @{
     ViewBag.Title = "Index";
 }
@@ -7,25 +7,25 @@
 
 @if (!Model.Any())
 {
-    <p>Sem autores cadastrados.</p>
+    <p>Sem emprestimos cadastrados.</p>
 }
 else
 {
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>Nome</th>
                 <th>Livro</th>
-                <th>Documento</th>
+                <th>Cliente</th>
+                <th>Emprestimo</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var author in Model)
+            @foreach (var rents in Model)
             {
                 <tr>
-                    <td>@author.Name</td>
-                    <td>@author.Books</td>
-                    <td>@author.Document</td>
+                    <td>@rents.Book</td>
+                    <td>@rents.Client</td>
+                    <td>@rents.RentDate</td>
                 </tr>
             }
 

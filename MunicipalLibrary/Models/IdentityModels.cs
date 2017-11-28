@@ -21,6 +21,8 @@ namespace MunicipalLibrary.Models
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Rent> Rents { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -7,13 +7,13 @@ namespace MunicipalLibrary.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class PopulableBooks : IMigrationMetadata
+    public sealed partial class adicionarRent : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulableBooks));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(adicionarRent));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709200006199_PopulableBooks"; }
+            get { return "201711282146484_adicionarRent"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,6 +3,8 @@
 namespace MunicipalLibrary.Models {
     public class Rent {
 
+        public int Id { get; set; }
+
         public Book Book {
             get; set;
         }

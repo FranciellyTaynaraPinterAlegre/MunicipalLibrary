@@ -1,12 +1,29 @@
 ﻿using MunicipalLibrary.Models;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
-namespace MunicipalLibrary.Controllers {
-    public class RentController : Controller {
-        public ActionResult Index() {
-            var rent = new Rent() { RentDate = new DateTimeOffset(2017, 12, 17, 23, 59, 00, new TimeSpan(-3, 0, 0)) };
-            return View(rent);
+namespace MunicipalLibrary.Controllers
+{
+    public class RentController : Controller
+    {
+        private ApplicationDbContext _context;
+
+        public RentController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+        public ActionResult Index()
+        {
+            var rents = _context.Rents.ToList();
+
+            return View(rents);
         }
     }
 }
