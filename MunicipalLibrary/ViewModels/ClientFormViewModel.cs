@@ -14,10 +14,17 @@ namespace MunicipalLibrary.ViewModels
             get
             {
                 if (Client != null && Client.Id != 0)
+                {
                     return "Editar Cliente";
-
-                return "Novo Cliente";
+                }
+                else
+                {
+                    return "Novo Cliente";
+                }               
             }
         }
+        public IEnumerable<CivilState> CivilState { get; set; }
+        public IEnumerable<Sex> Sex { get; set; }
+
     }
 }
