@@ -25,5 +25,11 @@ namespace MunicipalLibrary.Controllers {
             
             return View(clients);
         }
+
+        public ActionResult New()
+        {
+            var clientmodel = new Client();
+            return View("ClientForm", clientmodel);
+        }
     }
 }
