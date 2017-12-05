@@ -1,5 +1,4 @@
-﻿@model MunicipalLibrary.ViewModels.ClientFormViewModel;
-@{
+﻿@model MunicipalLibrary.ViewModels.ClientFormViewModel
     ViewBag.Title = "ClientForm";
 }
 
@@ -8,21 +7,16 @@
 @using (Html.BeginForm("Save", "Clients"))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Client.Id)
     <div class="form-group">
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Name) 
+        @Html.LabelFor(m => m.Client.Name)
+        @Html.TextBoxFor(m => m.Client.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Client.Name) 
 -    </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Birthdate)
-        @Html.TextBoxFor(m => m.Birthdate, "{0: dd/MM/yyyy }", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Birthdate)
-    </div>
-    <div class="checkbox">
-        <label>
-            @Html.CheckBoxFor(m => m.IsSubscribedToNewsletter) Assinar a NewsLetter
-        </label>
+        @Html.LabelFor(m => m.Client.BirthDate)
+        @Html.TextBoxFor(m => m.Client.BirthDate, "{0: dd/MM/yyyy }", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Client.BirthDate)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Client.CivilState)
