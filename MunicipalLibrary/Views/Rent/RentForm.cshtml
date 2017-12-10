@@ -1,0 +1,48 @@
+﻿@model MunicipalLibrary.ViewModels.RentFormViewModel
+@{
+    ViewBag.Title = "RentForm";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Rent"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Rent.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rent.)
+        @Html.TextBoxFor(m => m.Rent.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Rent.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rent.BirthDate)
+        @Html.TextBoxFor(m => m.Rent.BirthDate, "{0: dd/MM/yyyy }", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Rent.BirthDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rent.Document)
+        @Html.TextBoxFor(m => m.Rent.Document, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Rent.Document)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rent.CivilState)
+        @Html.DropDownListFor(m => m.Rent.CivilState,
+            new SelectList(Model.CivilState, "CivilState"),
+            "Escolha", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CivilState)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rent.Sex)
+        @Html.DropDownListFor(m => m.Rent.Sex,
+            new SelectList(Model.Sex, "CivilState"),
+            "Escolha", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Sex)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

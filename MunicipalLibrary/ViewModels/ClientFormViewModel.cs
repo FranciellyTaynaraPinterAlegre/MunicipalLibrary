@@ -20,11 +20,26 @@ namespace MunicipalLibrary.ViewModels
                 else
                 {
                     return "Novo Cliente";
-                }               
+                }
             }
         }
         public IEnumerable<CivilState> CivilState { get; set; }
         public IEnumerable<Sex> Sex { get; set; }
 
+        public ClientFormViewModel() : base()
+        {
+            CivilState = new List<CivilState>() {
+                Models.CivilState.Divorced,
+                Models.CivilState.Married,
+                Models.CivilState.Single,
+                Models.CivilState.Widowed
+            };
+            Sex = new List<Sex>()
+            {
+                Models.Sex.Feminine,
+                Models.Sex.Masculine,
+                Models.Sex.Other
+            };
+        }
     }
 }
