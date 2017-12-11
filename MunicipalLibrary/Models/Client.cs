@@ -3,10 +3,9 @@
 namespace MunicipalLibrary.Models {
     public class Client : Person {
 
-
-        public IList<Book> RentedBooks {
+      public IList<Book> RentedBooks {
             get; set;
-        }
+       }
 
     }
 }

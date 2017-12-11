@@ -11,7 +11,7 @@ namespace MunicipalLibrary.Controllers
 {
     public class RentController : Controller
     {
-        private ApplicationDbContext _context;
+        private ApplicationDbContext _context; 
 
         public RentController()
         {

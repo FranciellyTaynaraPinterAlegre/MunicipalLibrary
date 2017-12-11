@@ -26,7 +26,7 @@ namespace MunicipalLibrary.ViewModels
                     return "Novo Emprestimo";
                 }
             }
-        }
+        } 
 
         public RentFormViewModel() : base()
         {

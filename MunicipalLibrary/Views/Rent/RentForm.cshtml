@@ -20,18 +20,19 @@
         @Html.ValidationMessageFor(m => m.Rent.ReturnDate)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Rent.Book)
-        @Html.DropDownListFor(m => m.Rent.Book,
-            new SelectList(Model.Book, "Book"),
+        @Html.LabelFor(m => m.Rent.Book.Id)
+        @Html.DropDownListFor(m => m.Rent.Book.Id,
+            new SelectList(Model.Book, "Id", "Title"),
             "Escolha", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Book)
+        @Html.ValidationMessageFor(m => m.Rent.Book.Id)
     </div>
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Rent.Client)
-        @Html.DropDownListFor(m => m.Rent.Client,
-            new SelectList(Model.Client, "Client"),
+        @Html.LabelFor(m => m.Rent.Client.Id)
+        @Html.DropDownListFor(m => m.Rent.Client.Id,
+            new SelectList(Model.Client, "Id", "Name"),
             "Escolha", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Client)
+        @Html.ValidationMessageFor(m => m.Rent.Client.Id)
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>
