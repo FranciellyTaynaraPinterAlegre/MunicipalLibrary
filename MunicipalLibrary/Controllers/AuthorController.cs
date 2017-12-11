@@ -1,4 +1,5 @@
 ﻿using MunicipalLibrary.Models;
+using MunicipalLibrary.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -26,40 +27,42 @@ namespace MunicipalLibrary.Controllers {
         }
         public ActionResult New()
         {
-            var clientmodel = new ClientFormViewModel
+            var clientmodel = new AuthorFormViewModel
             {
-                Client = new Client()
+                Author = new Author()
             };
-            return View("ClientForm", clientmodel);
+            return View("AuthorForm", clientmodel);
         }
         [HttpPost] // só será acessada com POST
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Client client) // recebemos um cliente
+        public ActionResult Save(Author autor) // recebemos um cliente
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new ClientFormViewModel
+                var viewModel = new AuthorFormViewModel
                 {
-                    Client = client
+                    Author = autor
                 };
 
-                return View("ClientForm", viewModel);
+                return View("AuthorForm", viewModel);
             }
 
-            if (client.Id == 0)
+            if (autor.Id == 0)
             {
                 // armazena o cliente em memória
-                _context.Clients.Add(client);
+                _context.Authors.Add(autor);
             }
             else
             {
-                var clientInDb = _context.Clients.Single(c => c.Id == client.Id);
+                var authorInDb = _context.Authors.Single(c => c.Id == autor.Id);
 
-                clientInDb.Name = client.Name;
-                clientInDb.Document = client.Document;
-                clientInDb.BirthDate = client.BirthDate;
-                clientInDb.CivilState = client.CivilState;
-                clientInDb.Sex = client.Sex;
+                authorInDb.Name = autor.Name;
+                authorInDb.Document = autor.Document;
+                authorInDb.BirthDate = autor.BirthDate;
+                authorInDb.CivilState = autor.CivilState;
+                authorInDb.Sex = autor.Sex;
+                authorInDb.Books = autor.Books;
+
             }
 
             // faz a persistência
@@ -69,26 +72,26 @@ namespace MunicipalLibrary.Controllers {
         }
         public ActionResult Edit(int id)
         {
-            var clientInDb = _context.Clients.SingleOrDefault(c => c.Id == id);
+            var authorInDb = _context.Authors.SingleOrDefault(c => c.Id == id);
 
-            if (clientInDb == null)
+            if (authorInDb == null)
                 return HttpNotFound();
 
-            var viewModel = new ClientFormViewModel
+            var viewModel = new AuthorFormViewModel
             {
-                Client = clientInDb
+                Author = authorInDb
             };
 
-            return View("ClientForm", viewModel);
+            return View("AuthorForm", viewModel);
         }
         public ActionResult Delete(int id)
         {
-            var client = _context.Clients.SingleOrDefault(c => c.Id == id);
+            var client = _context.Authors.SingleOrDefault(c => c.Id == id);
 
             if (client == null)
                 return HttpNotFound();
 
-            _context.Clients.Remove(client);
+            _context.Authors.Remove(client);
             _context.SaveChanges();
 
             return new HttpStatusCodeResult(200);

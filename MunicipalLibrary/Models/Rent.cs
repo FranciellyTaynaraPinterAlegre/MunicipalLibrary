@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MunicipalLibrary.Models {
     public class Rent {
@@ -22,6 +24,10 @@ namespace MunicipalLibrary.Models {
                 return RentDate.AddDays(7);
             }
         }
-
+        public Rent()
+        {
+            Client = new Client();
+            Book = new Book();
+        }
     }
 }

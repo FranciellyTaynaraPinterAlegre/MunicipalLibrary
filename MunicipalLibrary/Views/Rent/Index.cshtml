@@ -4,33 +4,64 @@
 }
 
 <h2>Index</h2>
-
+<p>
+    @Html.ActionLink("Novo Emprestimo", "New", null, new { @class = "btn btn-danger" })
+</p>
 @if (!Model.Any())
 {
     <p>Sem emprestimos cadastrados.</p>
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="rent" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Livro</th>
                 <th>Cliente</th>
                 <th>Emprestimo</th>
+                <th>Devolução</th>
+                <th>Remover</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var rents in Model)
             {
                 <tr>
-                    <td>@rents.Book</td>
-                    <td>@rents.Client</td>
+                    <td>@Html.ActionLink(@rents.Client.Name, "Edit", new { rents.Id })</td>
                     <td>@rents.RentDate</td>
+                    <td>@rents.ReturnDate</td>
+                    <td>@rents.Book</td>
+                    <td>
+                        <button data-rent-id="@rents.Id" class="btn-link js-delete">Remover</button>
+                    </td>
                 </tr>
             }
-
         </tbody>
     </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#rent").on("click", ".js-delete",
+                function () {
+                    var button = $(this);
+                    bootbox.confirm("Tem certeza que quer remover este cliente?",
+                        function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/rent/delete/" + button.attr("data-rent-id"),
+                                    method: "GET",
+                                    success: function () {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
+                        });
+                });
+        });
+    </script>
 }
 
 

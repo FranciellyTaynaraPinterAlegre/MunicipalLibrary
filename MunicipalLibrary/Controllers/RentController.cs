@@ -1,8 +1,11 @@
-﻿using MunicipalLibrary.Models;
-using MunicipalLibrary.ViewModels;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using MunicipalLibrary.Models;
+using MunicipalLibrary.ViewModels;
 
 namespace MunicipalLibrary.Controllers
 {
@@ -22,9 +25,16 @@ namespace MunicipalLibrary.Controllers
 
         public ActionResult Index()
         {
-            var rents = _context.Rents.ToList();
-
+            var rents = _context.Rents.Include(c => c.Client).Include(c => c.Book).ToList();
             return View(rents);
+        }
+        public ActionResult Details(int id)
+        {
+            var rent = _context.Rents.Include(c => c.Client).Include(c => c.Book).SingleOrDefault(c => c.Id == id);
+            if (rent == null)
+                return HttpNotFound();
+
+            return View(rent);
         }
         public ActionResult New()
         {

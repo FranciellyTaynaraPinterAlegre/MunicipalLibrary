@@ -10,33 +10,28 @@
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Rent.Id)
     <div class="form-group">
-        @Html.LabelFor(m => m.Rent.)
-        @Html.TextBoxFor(m => m.Rent.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Rent.Name)
+        @Html.LabelFor(m => m.Rent.RentDate)
+        @Html.TextBoxFor(m => m.Rent.RentDate, "{0: dd/MM/yyyy }", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Rent.RentDate)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Rent.BirthDate)
-        @Html.TextBoxFor(m => m.Rent.BirthDate, "{0: dd/MM/yyyy }", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Rent.BirthDate)
+        @Html.LabelFor(m => m.Rent.ReturnDate)
+        @Html.TextBoxFor(m => m.Rent.ReturnDate, "{0: dd/MM/yyyy }", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Rent.ReturnDate)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Rent.Document)
-        @Html.TextBoxFor(m => m.Rent.Document, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Rent.Document)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Rent.CivilState)
-        @Html.DropDownListFor(m => m.Rent.CivilState,
-            new SelectList(Model.CivilState, "CivilState"),
+        @Html.LabelFor(m => m.Rent.Book)
+        @Html.DropDownListFor(m => m.Rent.Book,
+            new SelectList(Model.Book, "Book"),
             "Escolha", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.CivilState)
+        @Html.ValidationMessageFor(m => m.Book)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Rent.Sex)
-        @Html.DropDownListFor(m => m.Rent.Sex,
-            new SelectList(Model.Sex, "CivilState"),
+        @Html.LabelFor(m => m.Rent.Client)
+        @Html.DropDownListFor(m => m.Rent.Client,
+            new SelectList(Model.Client, "Client"),
             "Escolha", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Sex)
+        @Html.ValidationMessageFor(m => m.Client)
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>

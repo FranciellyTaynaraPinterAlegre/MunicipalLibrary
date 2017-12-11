@@ -8,6 +8,8 @@ namespace MunicipalLibrary.ViewModels
 {
     public class RentFormViewModel
     {
+        private ApplicationDbContext _context;
+        
         public IEnumerable<Client> Client { get; set; }
         public IEnumerable<Book> Book { get; set; }
         public Rent Rent { get; set; }
@@ -26,5 +28,11 @@ namespace MunicipalLibrary.ViewModels
             }
         }
 
+        public RentFormViewModel() : base()
+        {
+            _context = new ApplicationDbContext();
+            Book = _context.Books.ToList();
+            Client = _context.Clients.ToList();
+        }
     }
 }
