@@ -21,6 +21,7 @@ else
     <table id="clients" class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th>Editar</th>
                 <th>Nome</th>
                 <th>Data de Nascimento</th>
                 <th>Documento</th>
@@ -31,9 +32,11 @@ else
             @foreach (var clients in Model)
                 {
                 <tr>
-                    <td>@Html.ActionLink(@clients.Name, "Edit", new { clients.Id })</td>
+                    <td>@Html.ActionLink("Editar", "Edit", new { clients.Id })</td>
+                    <td>@clients.Name</td>
                     <td>@clients.BirthDate</td>
                     <td>@clients.Document</td>
+                    <a href="~/Views/Client/Index.cshtml">~/Views/Client/Index.cshtml</a>
                     <td>
                         <button data-client-id="@clients.Id" class="btn-link js-delete">Remover</button>
                     </td>

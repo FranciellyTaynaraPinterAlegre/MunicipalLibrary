@@ -6,7 +6,7 @@ namespace MunicipalLibrary.Models {
 
         [Required]
         public long Id { get; set; }
-        [Required]
+        
         [StringLength(255, MinimumLength = 3)]
         public string Title {
             get; set;
@@ -20,22 +20,21 @@ namespace MunicipalLibrary.Models {
             get; set;
         }
 
-        [Required]
         public Author Author {
             get; set;
         }
 
-        [Required]
+     
         public DateTimeOffset LaunchDate {
             get; set;
         }
 
-        [Required]
+       
         public Language Language {
             get; set;
         }
 
-        [Required]
+   
         public Category Category {
             get; set;
         }

@@ -9,6 +9,7 @@ using MunicipalLibrary.ViewModels;
 
 namespace MunicipalLibrary.Controllers
 {
+    [Authorize]
     public class RentController : Controller
     {
         private ApplicationDbContext _context; 

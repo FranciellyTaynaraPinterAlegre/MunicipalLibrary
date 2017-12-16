@@ -7,30 +7,65 @@
 
 @if (!Model.Any())
 {
-    <p>Sem livros cadastrados.</p>
+    <p>
+        @Html.ActionLink("Novo Livro", "New", null, new { @class = "btn btn-danger" })
+    </p>
+    <p>Sem clientes cadastrados.</p>
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <p>
+        @Html.ActionLink("Novo Livro", "New", null, new { @class = "btn btn-danger" })
+    </p>
+    <table id="book" class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th>Editar</th>
                 <th>Titulo</th>
                 <th>Subtitulo</th>
                 <th>Categoria</th>
+                <th>Remover</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var book in Model)
             {
                 <tr>
+                    <td>@Html.ActionLink("Editar", "Edit", new { book.Id })</td>
                     <td>@book.Title</td>
                     <td>@book.Subtitle</td>
                     <td>@book.Category</td>
+                    <td>
+                        <button data-book-id="@book.Id" class="btn-link js-delete">Remover</button>
+                    </td>
                 </tr>
             }
 
         </tbody>
     </table>
+}
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#book").on("click", ".js-delete",
+                function () {
+                    var button = $(this);
+                    bootbox.confirm("Tem certeza que quer remover este Livro?",
+                        function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/book/delete/" + button.attr("data-book-id"),
+                                    method: "GET",
+                                    success: function () {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
+                        });
+                });
+        });
+    </script>
 }
 
 

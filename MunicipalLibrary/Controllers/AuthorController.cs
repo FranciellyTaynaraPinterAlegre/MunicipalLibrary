@@ -5,7 +5,9 @@ using System.Linq;
 using System.Web.Mvc;
 
 namespace MunicipalLibrary.Controllers {
+    [Authorize]
     public class AuthorController : Controller {
+        
         // GET: Author
         private ApplicationDbContext _context;
 
@@ -27,15 +29,15 @@ namespace MunicipalLibrary.Controllers {
         }
         public ActionResult New()
         {
-            var clientmodel = new AuthorFormViewModel
+            var authormodel = new AuthorFormViewModel
             {
                 Author = new Author()
             };
-            return View("AuthorForm", clientmodel);
+            return View("AuthorForm", authormodel);
         }
         [HttpPost] // só será acessada com POST
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Author autor) // recebemos um cliente
+        public ActionResult Save(Author autor) // recebemos um authore
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +51,7 @@ namespace MunicipalLibrary.Controllers {
 
             if (autor.Id == 0)
             {
-                // armazena o cliente em memória
+                // armazena o authore em memória
                 _context.Authors.Add(autor);
             }
             else
@@ -58,16 +60,12 @@ namespace MunicipalLibrary.Controllers {
 
                 authorInDb.Name = autor.Name;
                 authorInDb.Document = autor.Document;
-                authorInDb.BirthDate = autor.BirthDate;
-                authorInDb.CivilState = autor.CivilState;
                 authorInDb.Sex = autor.Sex;
-                authorInDb.Books = autor.Books;
-
             }
 
             // faz a persistência
             _context.SaveChanges();
-            // Voltamos para a lista de clientes
+            // Voltamos para a lista de authores
             return RedirectToAction("Index");
         }
         public ActionResult Edit(int id)
@@ -86,12 +84,12 @@ namespace MunicipalLibrary.Controllers {
         }
         public ActionResult Delete(int id)
         {
-            var client = _context.Authors.SingleOrDefault(c => c.Id == id);
+            var author = _context.Authors.SingleOrDefault(c => c.Id == id);
 
-            if (client == null)
+            if (author == null)
                 return HttpNotFound();
 
-            _context.Authors.Remove(client);
+            _context.Authors.Remove(author);
             _context.SaveChanges();
 
             return new HttpStatusCodeResult(200);

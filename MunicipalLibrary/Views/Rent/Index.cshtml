@@ -16,6 +16,7 @@ else
     <table id="rent" class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th>Editar</th>
                 <th>Cliente</th>
                 <th>Emprestimo</th>
                 <th>Devolução</th>
@@ -27,7 +28,8 @@ else
             @foreach (var rents in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(@rents.Client.Name, "Edit", new { rents.Id })</td>
+                    <td>@Html.ActionLink("Editar", "Edit", new { rents.Id })</td>
+                    <td>@rents.Client.Name</td>
                     <td>@rents.RentDate</td>
                     <td>@rents.ReturnDate</td>
                     <td>@rents.Book</td>
@@ -47,7 +49,7 @@ else
             $("#rent").on("click", ".js-delete",
                 function () {
                     var button = $(this);
-                    bootbox.confirm("Tem certeza que quer remover este cliente?",
+                    bootbox.confirm("Tem certeza que quer remover este Emprestimo?",
                         function (result) {
                             if (result) {
                                 $.ajax({

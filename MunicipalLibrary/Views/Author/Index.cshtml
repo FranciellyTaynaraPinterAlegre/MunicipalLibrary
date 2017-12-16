@@ -7,30 +7,70 @@
 
 @if (!Model.Any())
 {
-    <p>Sem autores cadastrados.</p>
+    <p>
+        @Html.ActionLink("Novo Autor", "New", null, new { @class = "btn btn-danger" })
+    </p>
+    <p>Sem clientes cadastrados.</p>
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <p>
+        @Html.ActionLink("Novo Autor", "New", null, new { @class = "btn btn-danger" })
+    </p>
+    <table id="author" class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th>Editar</th>
                 <th>Nome</th>
-                <th>Livro</th>
+                <th>Sexo</th>
                 <th>Documento</th>
+                <th>Remover</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var author in Model)
             {
                 <tr>
+                    <td>@Html.ActionLink("Editar", "Edit", new { author.Id })</td>
                     <td>@author.Name</td>
-                    <td>@author.Books</td>
+                    <td>@author.Sex</td>
                     <td>@author.Document</td>
+                    <td>
+                        <button data-author-id="@author.Id" class="btn-link js-delete">Remover</button>
+                    </td>
                 </tr>
             }
 
         </tbody>
     </table>
 }
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#author").on("click", ".js-delete",
+                function () {
+                    var button = $(this);
+                    bootbox.confirm("Tem certeza que quer remover este Autor?",
+                        function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/author/delete/" + button.attr("data-author-id"),
+                                    method: "GET",
+                                    success: function () {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
+                        });
+                });
+        });
+    </script>
+}
+
+
+
+
+
 
 

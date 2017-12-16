@@ -252,6 +252,10 @@
     <Compile Include="Migrations\201712102052265_att banco.Designer.cs">
       <DependentUpon>201712102052265_att banco.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712160014564_correção de bug.cs" />
+    <Compile Include="Migrations\201712160014564_correção de bug.Designer.cs">
+      <DependentUpon>201712160014564_correção de bug.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Author.cs" />
@@ -270,7 +274,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AuthorFormViewModel.cs" />
     <Compile Include="ViewModels\RentFormViewModel.cs" />
-    <Compile Include="ViewModels\RandomBookViewModel.cs" />
+    <Compile Include="ViewModels\BookFormViewModel.cs" />
     <Compile Include="ViewModels\ClientFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -361,6 +365,8 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Rent\RentForm.cshtml" />
+    <Content Include="Views\Book\BookForm.cshtml" />
+    <Content Include="Views\Author\AuthorForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709192300492_migrationInicial.resx">
@@ -371,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712102052265_att banco.resx">
       <DependentUpon>201712102052265_att banco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712160014564_correção de bug.resx">
+      <DependentUpon>201712160014564_correção de bug.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -9,8 +9,10 @@ using MunicipalLibrary.ViewModels;
 
 namespace MunicipalLibrary.Controllers
 {
+    [Authorize]
     public class BookController : Controller
     {
+        
 
         private ApplicationDbContext _context;
 
@@ -32,69 +34,67 @@ namespace MunicipalLibrary.Controllers
         }
         public ActionResult New()
         {
-            var clientmodel = new ClientFormViewModel
+            var bookmodel = new BookFormViewModel
             {
-                Client = new Client()
+                Book = new Book()
             };
-            return View("ClientForm", clientmodel);
+            return View("BookForm", bookmodel);
         }
         [HttpPost] // só será acessada com POST
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Client client) // recebemos um cliente
+        public ActionResult Save(Book book) // recebemos um booke
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new ClientFormViewModel
+                var viewModel = new BookFormViewModel
                 {
-                    Client = client
+                    Book = book
                 };
 
-                return View("ClientForm", viewModel);
+                return View("BookForm", viewModel);
             }
 
-            if (client.Id == 0)
+            if (book.Id == 0)
             {
-                // armazena o cliente em memória
-                _context.Clients.Add(client);
+                // armazena o booke em memória
+                _context.Books.Add(book);
             }
             else
             {
-                var clientInDb = _context.Clients.Single(c => c.Id == client.Id);
+                var bookInDb = _context.Books.Single(c => c.Id == book.Id);
 
-                clientInDb.Name = client.Name;
-                clientInDb.Document = client.Document;
-                clientInDb.BirthDate = client.BirthDate;
-                clientInDb.CivilState = client.CivilState;
-                clientInDb.Sex = client.Sex;
+                bookInDb.Title = book.Title;
+                bookInDb.Subtitle = book.Subtitle;
+                bookInDb.Category = book.Category;
             }
 
             // faz a persistência
             _context.SaveChanges();
-            // Voltamos para a lista de clientes
+            // Voltamos para a lista de bookes
             return RedirectToAction("Index");
         }
         public ActionResult Edit(int id)
         {
-            var clientInDb = _context.Clients.SingleOrDefault(c => c.Id == id);
+            var bookInDb = _context.Books.SingleOrDefault(c => c.Id == id);
 
-            if (clientInDb == null)
+            if (bookInDb == null)
                 return HttpNotFound();
 
-            var viewModel = new ClientFormViewModel
+            var viewModel = new BookFormViewModel
             {
-                Client = clientInDb
+                Book = bookInDb
             };
 
-            return View("ClientForm", viewModel);
+            return View("BookForm", viewModel);
         }
         public ActionResult Delete(int id)
         {
-            var client = _context.Clients.SingleOrDefault(c => c.Id == id);
+            var book = _context.Books.SingleOrDefault(c => c.Id == id);
 
-            if (client == null)
+            if (book == null)
                 return HttpNotFound();
 
-            _context.Clients.Remove(client);
+            _context.Books.Remove(book);
             _context.SaveChanges();
 
             return new HttpStatusCodeResult(200);
